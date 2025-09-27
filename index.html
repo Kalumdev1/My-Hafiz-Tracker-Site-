@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafiz Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>📖 Hafiz Tracker</h1>
+    <blockquote>“Celui qui lit le Coran et l’apprend par cœur sera avec les nobles anges…”</blockquote>
+  </header>
+
+  <main>
+    <!-- Barre d'outils -->
+    <div class="toolbar">
+      <input type="text" id="search" placeholder="🔍 Rechercher une sourate...">
+      <select id="filter">
+        <option value="all">Toutes</option>
+        <option value="learned">Apprises</option>
+        <option value="not-learned">Non apprises</option>
+      </select>
+    </div>
+
+    <!-- Compteur -->
+    <div class="progress-container">
+      <p id="progress">0 / 114 sourates apprises</p>
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="export-buttons">
+  <button id="export-pdf">📑 Exporter en PDF</button>
+  <button id="export-excel">📊 Exporter en Excel</button>
+  </div>
+
+  <div class="charts-container">
+  <canvas id="pieChart"></canvas>
+  <canvas id="barChart"></canvas>
+  </div>
+
+
+    <!-- Liste des Surahs a metriser -->
+    <ul class="surah-list">
+      <li><a href="https://youtu.be/QSHdQnZ0LFE?si=bDCt64jQAhU0mhuZ" target="_blank">1. Al-Fatiha</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/oM1aGRg1bDE?si=HsJGOAXo2zIKY_x1" target="_blank">2. Al-Baqarah</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/Wm8v3qytyoM?si=m3eLNKABtle6C02e" target="_blank">3. Aal-Imran</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/50CGbHxcstY?si=q-iscu_cR7ejnekR" target="_blank">4. An-Nisa</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/oiUR9H8MRJM?si=bOfE-kWyHyTe6m8J" target="_blank">5. Al-Ma'idah</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/fMBXAvsFyq8?si=5Cg2xvdsmZygkPgL" target="_blank">6. Al-An'am</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/BmRx-e6QFQ0?si=hIJuSYN0R2jYC5ww" target="_blank">7. Al-A'raf</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/dO9HFZAIoKI?si=tCM8e-_6S3JNUAxd" target="_blank">8. Al-Anfal</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/PkION-r9Wrs?si=t5o-HqmCbwP12501" target="_blank">9. At-Tawbah</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/WdK7zYZyIhs?si=ukutK35xpNXsYTTH" target="_blank">10. Yunus</a> <input type="checkbox"></li>
+
+      <li><a href="https://youtu.be/wYzd_rNq6Fw?si=_aXokWb5WlxlnPKp" target="_blank">11. Hud</a> <input type="checkbox"></li>
+      <li><a href="hhttps://youtu.be/nfasn-qi2GA?si=cXQkzx1fFgB8ZJQc" target="_blank">12. Yusuf</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/a7f_Iol4BAI?si=-mcNQ1UX4K-nBSg2" target="_blank">13. Ar-Ra'd</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/6zmdK4RfJEw?si=c6nzbHVoHaS-VMmi" target="_blank">14. Ibrahim</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/k52SFS6gdzk?si=GTGsYVJWTSXddwqE" target="_blank">15. Al-Hijr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/gspRCOTYCds?si=bIZyait7zXsDP1ft" target="_blank">16. An-Nahl</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/q-fVgxSi4zk?si=OqFcbnNFY7vWEolJ" target="_blank">17. Al-Isra</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/nRuai8aXeHQ?si=4lWAE3FOC37TlEy-" target="_blank">18. Al-Kahf</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/XPyYEwWBn6M?si=jo6IDUmMXQNuQNNv" target="_blank">19. Maryam</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/AKS8AXKZadg?si=3Z9cI6sdVgwdQ-oV" target="_blank">20. Ta-Ha</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/0bTjngWAVEc?si=6yBQUxoskpuQ5Z_a" target="_blank">21. Al-Anbiyā</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/VDh2zzJ8eOE?si=tt-e4VckFGEjkqgH" target="_blank">22. Al-Ḥajj</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/nsnxfLRRY_s?si=l-U2-Iim6oluZRw-" target="_blank">23. Al-Muʾminūn</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/j_L5j67ZApU?si=XB2db_yoAeXCWNcZ" target="_blank">24. An-Nūr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/lzlQ423QKs4?si=qlqNrAuI69IXSODX" target="_blank">25. Al-Furqān</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/-gE8Z0N1WbM?si=v0T3zu80m6B6M9Kl" target="_blank">26. Ash-Shuʿarā</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/MFQXmr88Fsk?si=ImW0ogQJX9vvZHq8" target="_blank">27. An-Naml</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/PCY6msI6xEQ?si=Et07hUU1j6W2v9dw" target="_blank">28. Al-Qaṣaṣ</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/JvPvCgkVzQ0?si=v2OtMIkaNTAkH5Mn" target="_blank">29. Al-ʿAnkabūt</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/npk5ZVFVmVQ?si=cQ66sAWk-q9qFEoK" target="_blank">30. Ar-Rūm</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/oDxe34ltnHM?si=wvwGymNRC0zh3Yic" target="_blank">31. Luqmān</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/XFG3JTxb3-w?si=ahRl-xHHRbvIPBAe" target="_blank">32. As-Sajda</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/PLXCP2o9dYw?si=hGRvx3hZjAlA5a8s" target="_blank">33. Al-Aḥzāb</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/tCQ9AqgfpPE?si=z8xWJzyP6I5eFGRc" target="_blank">34. Saba</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/1HDnjr0_OzQ?si=W5PTeX0IJaMqDeTK" target="_blank">35. Fāṭir</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/HMdOET4Kliw?si=DKDx__ftgYB3by3-" target="_blank">36. Yā-Sīn</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/zfHkwBrW0kM?si=xA-JMyg5KxCV4xpF" target="_blank">37. As-Ṣāffāt</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/xuyDSA8A6NY?si=SeFLQDvsTsHTMZVo" target="_blank">38. Ṣād</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/foofbG0P8BA?si=TfuVVMhV2gReUSxn" target="_blank">39. Az-Zumar</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/4XLWt43Uf0w?si=JJDZNL0aw25Vm7tL" target="_blank">40. Ghāfir / Al-Muʾmin</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/mXFwf9CbPbU?si=vS5qyIyHe-cOil2L" target="_blank">41. Fussilat</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/h1sTe0UTeug?si=-ruoQU5ofqmWCwNj" target="_blank">42. Ash-Shūrā</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/wlqLrCkWemg?si=9mxV7XpgC-fsP_W-" target="_blank">43. Az-Zukhruf</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/xaJAEnaq19I?si=RdSd6nsUWVPBhUzV" target="_blank">44. Ad-Dukhān</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/47AyY9bxL7U?si=oqDzh9j4_Y2Yo1Ai" target="_blank">45. Al-Jāthiya</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/Q0deJ0tuONY?si=4eIw2RvV6BzjBp2P" target="_blank">46. Al-Aḥqāf</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/fdHorc12-Ng?si=05NVh-jzYEwk1ddY" target="_blank">47. Muḥammad</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/heQ8-dNu9Ns?si=1JW5ni9awWLfZP6K" target="_blank">48. Al-Fatḥ</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/G5NQ1fGjGgI?si=1810L9zMUjDBal_r" target="_blank">49. Al-Ḥujurāt</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/kpbEx8S5N1M?si=w1pFEHvFwlWHYhNU" target="_blank">50. Qāf</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/pla_FYVvSfc?si=HrHr4bhJi5cvoyki" target="_blank">51. Adh-Dhāriyāt</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/DWvMrRwuUL4?si=8Fn1LnJ4uoeR5bFU" target="_blank">52.  Aṭ-Ṭūr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/HG-QqlR5OtI?si=YzWJqTL_02jG8Wtg" target="_blank">53.  An-Najm</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/AmD-PZgXEbA?si=X-6utldXzypBe5fw" target="_blank">54. Al-Qamar</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/tQHAwV9B8hQ?si=Cmw7hNulqx0ZHlAI" target="_blank">55. Ar-Raḥmān</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/Jzzd8hOmDzU?si=ty-HSamdTtEz6sss" target="_blank">56. Al-Wāqiʿa</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/zPvP4jpkbRM?si=o1qpSwstAH_PU44N" target="_blank">57. Al-Ḥadīd</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/h7rFSz8uuMs?si=_qGKPuxihQpSnreK" target="_blank">58. Al-Mujādila</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/u_kdOcwNT34?si=eoNwl-t6VwJpu1kA" target="_blank">59. Al-Ḥashr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/f3mkylDz-EY?si=rv5yNbqWyRr_gBf8" target="_blank">60. Al-Mumtaḥana</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/azfApl5HS6E?si=GhdNJDb3OiWpD8WQ" target="_blank">61. As-Ṣaff</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/BsRkkJ-iHdM?si=Ly1u-9z4Fuac_XJb" target="_blank">62. Al-Jumuʿa</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/wOjzZXttuhw?si=6yDUAMn0ODKYdzdS" target="_blank">63. Al-Munāfiqūn</a> <input type="checkbox"></li>
+      <li><a href="https://www.tiktok.com/search?q=surah+Ta-Ha+recitation" target="_blank">64. At-Taghābun</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/wB5Sjy-yGng?si=UDV9Z7UsB0Yi7isz" target="_blank">65. Aṭ-Ṭalāq</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/VCMS98_KrQA?si=Ft2KPVby5tVMRA0J" target="_blank">66. At-Taḥrīm</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/zApq-xpiMZg?si=kMYqrEuGtjiMJIlj" target="_blank">67. Al-Mulk</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/-oqmlcid34Q?si=Sf9ckaz2KB3KN-hk" target="_blank">68. Al-Qalam</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/0-NaY7Y6lvo?si=QzQ61XkQlk7Y6pNS" target="_blank">69. Al-Ḥāqqa</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/240R_trIqR4?si=hqecPcnGEScm_tzY" target="_blank">70. Al-Maʿārij</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/kjx6jDACqd4?si=JF5qXH48Qp_cFIH7" target="_blank">71. Nūḥ</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/TmU89w8LRhw?si=ByDM7xLxMuQUnCvk" target="_blank">72. Al-Jinn</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/IDVeNNChub8?si=Mu6lBpmwxfW6WRhm" target="_blank">73. Al-Muzzammil</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/RZER9JZxHI8?si=qcMIBVVDhp2uNnip" target="_blank">74. Al-Muddaththir</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/is8We6yXZUY?si=nnKK1Jlq5ZkB5H8_" target="_blank">75. Al-Qiyāma</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/n1RcKj8QYfA?si=ukDWi299LK1Qk2BB" target="_blank">76. Al-Insān</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/W9SvXStuoVI?si=QPLGzZK_Bwkc0QPU" target="_blank">77. Al-Mursalāt</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/qBgDocukAJ0?si=xRvOAsWL4bZb1Uim" target="_blank">78. An-Naba></a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/EKcFYxnDSgw?si=JpEwG9DcrtNiQQBw" target="_blank">79. An-Nāziʿāt</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/ysfapkycApg?si=_PAsz0QjTbelor4S" target="_blank">80. Abasa</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/dWfkzoB0GpM?si=Oca5exB3PKPu2Ybw" target="_blank">81. At-Takwīr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/H9YcB8EmN9E?si=L_1nRWcQXJ4aEUzB" target="_blank">82. Al-Infiṭār</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/bqbBb0FIjEI?si=TG8YQ5ZDxFUVDKFg" target="_blank">83. Al-Muṭaffifīn</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/IgS9cZozLPM?si=mOXgYV9UhRFi_Eib" target="_blank">84.Al-Inshiqāq</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/eS2xkYzsb0E?si=dOO75JcZQdl3NBhK" target="_blank">85. Al-Burūj</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/SQlBPBzl5aU?si=MRPjeFXIG2OuSpKh" target="_blank">86. Aṭ-Ṭāriq</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/qBST3z33VGA?si=lTaBY9xWcd2YUfDn" target="_blank">87. Al-Aʿlā</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/n19SVUpemr8?si=Ny4ydQRen27k1ThP" target="_blank">88. Al-Ghāshiya</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/QvrUMaMa9r0?si=L9iD_kaNXQtNOnC3" target="_blank">89. Al-Fajr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/SE8Tuz2fVI0?si=xXpIr1OoZs7OvA_0" target="_blank">90.Al-Balad</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/iJlJyVOK7hc?si=LAlO6-AfN5LBtRaC" target="_blank">91. Ash-Shams</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/9pTh7jviOfk?si=ODW0YejMFVHX3u0U" target="_blank">92. Al-Layl</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/gjtubeyXbKY?si=4B6n-0X-IhXA1KbK" target="_blank">93. Ad-Ḍuḥā</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/lqJIWX3xMH4?si=MhnZm5xxutVo5wex" target="_blank">94. Ash-Sharḥ / Al-Inshirāḥ</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/zMZ2dYw6CRE?si=bGOXnPlXDy7rRw6B" target="_blank">95. At-Tīn</a> <input type="checkbox"></li>
+      <li><a href="https://www.tiktok.com/@asma.jm/video/7152204166746656006?is_from_webapp=1&sender_device=pc&web_id=7526685822675551749" target="_blank">96. Al-ʿAlaq</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/U9KUW63Jqhc?si=GyvEeW4VoJcwS7NF" target="_blank">97. Al-Qadr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/EybBGdkHifE?si=9rl3DxJqR0UK2sjC" target="_blank">98. Al-Bayyina</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/Ug53LzYC2Sg?si=RAyTjGTHzCz2ailx" target="_blank">99. Az-Zalzala</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/nsbfDFeCah0?si=jjs_KIejFqe73V5Z" target="_blank">100. Al-ʿĀdiyāt</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/ZOwgVu-6JLw?si=w1Wiei0jxxGcMUzt" target="_blank">101. Al-Qāriʿa</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/iqAoMEDFO-Y?si=hNuCqdVmO3CmwpEk" target="_blank">102. At-Takāthur</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/20XZitzVotU?si=J8Nb1Byv7EDIuazf" target="_blank">103. Al-ʿAṣr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/6_8V5ms56yw?si=F5TGKiNB-rG0Ze2Y" target="_blank">104. Al-Humaza</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/l_Zbuga1Ebs?si=MQLhehisqfvXBcM8" target="_blank">105. Al-Fīl</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/lYOREZ5TcHU?si=Lmz613gugcqoVMZA" target="_blank">106. Quraysh</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/pDdWZVsZCpA?si=1nkdbpKTrSGpNduh" target="_blank">107. Al-Māʿūn</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/0bjhBIVFEO0?si=GUJlgjxVatJdtVtM" target="_blank">108. Al-Kawthar</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/3pynO8bfGKM?si=iBNYn07CCgeeNOjw" target="_blank">109. Al-Kāfirūn</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/ggn8i3pN1Qg?si=nrrtUgiIAKOivXzs" target="_blank">110. An-Naṣr</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/htCH7X4DF_o?si=2-xQvPOtjlO1eU1r" target="_blank">111. Al-Masad</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/ZXM96rj6oWo?si=W8QCs8MzzS-x1vVd" target="_blank">112. Al-Ikhlāṣ</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/HHDCn5UOOus?si=UfAGskgyHBQLEliu" target="_blank">113.Al-Falaq</a> <input type="checkbox"></li>
+      <li><a href="https://youtu.be/LdFBROw1xVw?si=mxwNtCRDzoKqT_tA" target="_blank">114. An-Nās</a> <input type="checkbox"></li>
+  </main>
+
+
+  <footer>
+    <p>🌙 Hafiz Tracker - Avec l’aide d’Allah 🤲</p>
+  </footer><script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</body>
+</html>

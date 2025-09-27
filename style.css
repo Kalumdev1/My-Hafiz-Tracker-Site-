@@ -1,0 +1,161 @@
+:root {
+  --bg-color: #f0f2f5;
+  --text-color: #222;
+  --header-bg: linear-gradient(135deg, #ff6f61, #ffb347);
+  --card-bg: #fff;
+  --btn-bg: #ff6f61;
+  --btn-hover: #ff3b2e;
+  --progress-bg: #ddd;
+  --progress-fill: #ff6f61;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #eee;
+  --header-bg: linear-gradient(135deg, #37474f, #607d8b);
+  --card-bg: #2c2c2c;
+  --btn-bg: #607d8b;
+  --btn-hover: #455a64;
+  --progress-bg: #333;
+  --progress-fill: #607d8b;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  background: var(--header-bg);
+  color: white;
+  padding: 2rem 1rem;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  animation: fadeIn 1s ease-in;
+}
+header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+header blockquote { font-style: italic; opacity: 0.85; }
+
+/* TOOLBAR */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+.toolbar input, .toolbar select, .toolbar button {
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.toolbar button {
+  background: var(--btn-bg);
+  color: white;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+.toolbar button:hover {
+  background: var(--btn-hover);
+  transform: scale(1.1) rotate(-2deg);
+}
+
+/* PROGRESS */
+.progress-container {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  animation: fadeIn 1.2s ease-in;
+}
+.progress-bar {
+  width: 100%;
+  height: 28px;
+  background: var(--progress-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+#progress-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--progress-fill);
+  transition: width 0.8s ease-in-out;
+  border-radius: 20px;
+}
+#progress { text-align: center; margin-top: 5px; font-weight: bold; }
+
+/* SURAH LIST */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.surah-list { list-style: none; padding: 0; margin: 0; }
+.surah-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  transition: transform 0.4s, box-shadow 0.4s, background 0.3s;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+.surah-list li:hover {
+  transform: translateY(-5px) rotateX(3deg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.surah-list a {
+  color: var(--btn-bg);
+  font-weight: 600;
+  text-decoration: none;
+}
+.surah-list a:hover { color: var(--btn-hover); }
+.surah-list input[type="checkbox"] { transform: scale(1.4); cursor: pointer; }
+
+/* CHARTS */
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.charts-container canvas {
+  max-width: 350px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+.charts-container canvas:hover { transform: scale(1.05); }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: var(--header-bg);
+  color: white;
+  margin-top: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .surah-list li{ flex-direction: column; align-items:flex-start; }
+  .toolbar{ flex-direction:column; gap:5px; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
