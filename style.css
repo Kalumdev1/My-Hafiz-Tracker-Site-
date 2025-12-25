@@ -36,11 +36,21 @@ header {
   padding: 2rem 1rem;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  animation: fadeIn 1s ease-in;
+  position: relative;
 }
-header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
-header blockquote { font-style: italic; opacity: 0.85; }
+header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+header blockquote { font-style: italic; opacity: 0.85; margin-bottom: 10px; }
+header button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--btn-bg);
+  color: white;
+  cursor: pointer;
+}
 
 /* TOOLBAR */
 .toolbar {
@@ -55,24 +65,17 @@ header blockquote { font-style: italic; opacity: 0.85; }
   border-radius: 12px;
   border: none;
   font-size: 1rem;
-  transition: all 0.3s ease;
 }
 .toolbar button {
   background: var(--btn-bg);
   color: white;
   cursor: pointer;
-  animation: pulse 2s infinite;
-}
-.toolbar button:hover {
-  background: var(--btn-hover);
-  transform: scale(1.1) rotate(-2deg);
 }
 
 /* PROGRESS */
 .progress-container {
   max-width: 800px;
   margin: 0 auto 20px auto;
-  animation: fadeIn 1.2s ease-in;
 }
 .progress-bar {
   width: 100%;
@@ -80,7 +83,6 @@ header blockquote { font-style: italic; opacity: 0.85; }
   background: var(--progress-bg);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 }
 #progress-fill {
   width: 0%;
@@ -108,11 +110,9 @@ main {
   border-radius: 14px;
   border: 1px solid #ddd;
   transition: transform 0.4s, box-shadow 0.4s, background 0.3s;
-  animation: fadeInUp 0.8s ease forwards;
-  opacity: 0;
 }
 .surah-list li:hover {
-  transform: translateY(-5px) rotateX(3deg);
+  transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 .surah-list a {
@@ -134,9 +134,7 @@ main {
 .charts-container canvas {
   max-width: 350px;
   width: 100%;
-  transition: transform 0.3s ease;
 }
-.charts-container canvas:hover { transform: scale(1.05); }
 
 /* FOOTER */
 footer {
@@ -154,8 +152,3 @@ footer {
   .surah-list li{ flex-direction: column; align-items:flex-start; }
   .toolbar{ flex-direction:column; gap:5px; }
 }
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
