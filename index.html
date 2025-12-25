@@ -11,6 +11,7 @@
   <header>
     <h1>📖 Hafiz Tracker</h1>
     <blockquote>“Celui qui lit le Coran et l’apprend par cœur sera avec les nobles anges…”</blockquote>
+    <button id="toggle-theme">🌙 / ☀️</button>
   </header>
 
   <main>
@@ -32,18 +33,19 @@
       </div>
     </div>
 
+    <!-- Export -->
     <div class="export-buttons">
-  <button id="export-pdf">📑 Exporter en PDF</button>
-  <button id="export-excel">📊 Exporter en Excel</button>
-  </div>
+      <button id="export-pdf">📑 Exporter en PDF</button>
+      <button id="export-excel">📊 Exporter en Excel</button>
+    </div>
 
-  <div class="charts-container">
-  <canvas id="pieChart"></canvas>
-  <canvas id="barChart"></canvas>
-  </div>
+    <!-- Graphiques -->
+    <div class="charts-container">
+      <canvas id="pieChart"></canvas>
+      <canvas id="barChart"></canvas>
+    </div>
 
-
-    <!-- Liste des Surahs a metriser -->
+    <!-- Liste des sourates -->
     <ul class="surah-list">
       <li><a href="https://youtu.be/QSHdQnZ0LFE?si=bDCt64jQAhU0mhuZ" target="_blank">1. Al-Fatiha</a> <input type="checkbox"></li>
       <li><a href="https://youtu.be/oM1aGRg1bDE?si=HsJGOAXo2zIKY_x1" target="_blank">2. Al-Baqarah</a> <input type="checkbox"></li>
@@ -165,9 +167,12 @@
 
   <footer>
     <p>🌙 Hafiz Tracker - Avec l’aide d’Allah 🤲</p>
-  </footer><script src="script.js"></script>
+  </footer>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
